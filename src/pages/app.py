@@ -1,0 +1,148 @@
+'''import pandas as pd
+import numpy as np
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from scipy import stats
+from flask import Flask, request, jsonify
+#!/usr/bin/env python3.11
+import sys
+if sys.version_info < (3, 11) or sys.version_info >= (3, 14):
+    sys.exit("This script requires Python 3.11")
+
+app = Flask(__name__)
+
+# Load and preprocess data (done once at startup)
+df = pd.read_csv('Daily.csv')
+df['Average_Daily_Usage'] = df['Average_Daily_Usage'].fillna(
+    (df['Daily_Consumption'] / df['Count_Employees'].replace(0, 1))
+).round(2)
+
+df.dropna(inplace=True)
+numeric_cols = ['Daily_Consumption', 'Count_Employees', 'Average_Daily_Usage', 'total_capacity']
+df = df[(np.abs(stats.zscore(df[numeric_cols])) < 3).all(axis=1)]
+
+X = df.drop(columns=['Daily_Consumption'])
+y = df['Daily_Consumption']
+
+categorical_features = ['Industry_Name', 'Location']
+numeric_features = ['Count_Employees', 'Average_Daily_Usage', 'total_capacity']
+
+preprocessor = ColumnTransformer([
+    ('num', Pipeline([
+        ('imputer', SimpleImputer(strategy='median')),
+        ('scaler', StandardScaler())
+    ]), numeric_features),
+    ('cat', Pipeline([
+        ('imputer', SimpleImputer(strategy='most_frequent')),
+        ('encoder', OneHotEncoder(handle_unknown='ignore'))
+    ]), categorical_features)
+])
+
+# Train the model (done once at startup)
+model = Pipeline([
+    ('preprocessor', preprocessor),
+    ('regressor', GradientBoostingRegressor(n_estimators=200, max_depth=5, learning_rate=0.1, random_state=42))
+])
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model.fit(X_train, y_train)
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        data = request.get_json()
+        input_df = pd.DataFrame([{
+            'Industry_Name': data['industryName'],
+            'Location': data['location'],
+            'Count_Employees': float(data['countEmployees']),
+            'Average_Daily_Usage': float(data['averageDailyUsage']),
+            'total_capacity': float(data['totalCapacity'])
+        }])
+        predicted_value = model.predict(input_df)[0]
+        return jsonify({'predictedDailyConsumption': round(predicted_value, 2)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)'''
+    
+ 
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from scipy import stats
+import sys
+
+if sys.version_info < (3, 11) or sys.version_info >= (3, 14):
+    sys.exit("This script requires Python 3.11")
+
+# Load and preprocess data
+df = pd.read_csv('Daily.csv')
+df['Average_Daily_Usage'] = df['Average_Daily_Usage'].fillna(
+    (df['Daily_Consumption'] / df['Count_Employees'].replace(0, 1))
+).round(2)
+
+df.dropna(inplace=True)
+numeric_cols = ['Daily_Consumption', 'Count_Employees', 'Average_Daily_Usage', 'total_capacity']
+df = df[(np.abs(stats.zscore(df[numeric_cols])) < 3).all(axis=1)]
+
+X = df.drop(columns=['Daily_Consumption'])
+y = df['Daily_Consumption']
+
+categorical_features = ['Industry_Name', 'Location']
+numeric_features = ['Count_Employees', 'Average_Daily_Usage', 'total_capacity']
+
+preprocessor = ColumnTransformer([
+    ('num', Pipeline([
+        ('imputer', SimpleImputer(strategy='median')),
+        ('scaler', StandardScaler())
+    ]), numeric_features),
+    ('cat', Pipeline([
+        ('imputer', SimpleImputer(strategy='most_frequent')),
+        ('encoder', OneHotEncoder(handle_unknown='ignore'))
+    ]), categorical_features)
+])
+
+# Train the model
+model = Pipeline([
+    ('preprocessor', preprocessor),
+    ('regressor', GradientBoostingRegressor(n_estimators=200, max_depth=5, learning_rate=0.1, random_state=42))
+])
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model.fit(X_train, y_train)
+
+def get_prediction():
+    try:
+        # Get user input
+        print("Enter the following details for prediction:")
+        industry_name = input("Industry Name (e.g., Manufacturing): ")
+        location = input("Location (e.g., New York): ")
+        count_employees = float(input("Number of Employees (e.g., 100): "))
+        average_daily_usage = float(input("Average Daily Usage (e.g., 50.5): "))
+        total_capacity = float(input("Total Capacity (e.g., 1000.0): "))
+
+        # Create input DataFrame
+        input_df = pd.DataFrame([{
+            'Industry_Name': industry_name,
+            'Location': location,
+            'Count_Employees': count_employees,
+            'Average_Daily_Usage': average_daily_usage,
+            'total_capacity': total_capacity
+        }])
+
+        # Make prediction
+        predicted_value = model.predict(input_df)[0]
+        print(f"\nPredicted Daily Consumption: {round(predicted_value, 2)}")
+    except Exception as e:
+        print(f"Error: {str(e)}")
+
+if __name__ == '__main__':
+    get_prediction()

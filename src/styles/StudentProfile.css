@@ -1,0 +1,70 @@
+.student-profile-container {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #1b5e20, #66bb6a);
+  color: #ffffff;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.student-profile-container h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.profile-details {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.missions-list {
+  width: 100%;
+  max-width: 500px;
+}
+
+.missions-list h3 {
+  margin-bottom: 10px;
+}
+
+.mission-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mission-card button {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  background: #4CAF50;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.mission-card button:hover {
+  background: #45a049;
+}
+
+.progress-graph {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 20px;
+  text-align: center;
+}

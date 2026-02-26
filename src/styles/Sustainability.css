@@ -1,0 +1,195 @@
+.sustainability-container {
+  font-family: 'Comic Neue', sans-serif;
+  background-color: #e6f3e6;
+  padding: 20px;
+}
+.PlayBtn{
+  text-decoration: none;
+  padding: 20px 60px;
+  background-color: rgba(29, 185, 68, 0.753);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 8px rgba(139, 61, 61, 0.74);
+  font-weight: 700;
+  font-size: larger;
+}
+.sustainability-header {
+  text-align: center;
+  color: #28a745;
+  position: relative;
+}
+
+.school-registration {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #28a745;
+  color: white;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  display: inline-block;
+}
+
+.school-registration:hover {
+  background: #1d7d33;
+}
+
+.go-green-button-top {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: inline-block;
+}
+
+.go-green-button-top:hover {
+  background: #1d7d33;
+}
+
+.progress-section {
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.progress-bar {
+  background-color: #d3d3d3;
+  border-radius: 20px;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #28a745, #17a2b8);
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+}
+
+.sdg-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.sdg-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sdg-card:hover {
+  transform: scale(1.05);
+}
+
+.hover-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  text-align: center;
+  width: 80%;
+}
+
+.sdg-card:hover .hover-info {
+  opacity: 1;
+}
+
+.sdg-card button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sdg-card button:hover {
+  background: #1d7d33;
+}
+
+.sustainability-options {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.sustainability-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sdg-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sdg-card {
+    height: 120px;
+  }
+  .school-registration {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+  .go-green-button-top {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
