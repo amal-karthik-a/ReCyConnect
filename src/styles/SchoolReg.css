@@ -1,0 +1,220 @@
+.school-register-container {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #1b5e20, #66bb6a);
+  color: #ffffff;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.school-register-header {
+  padding: 60px 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.school-register-header h1 {
+  font-size: 3.5em;
+  margin: 0;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.school-register-header p {
+  font-size: 1.3em;
+  margin: 15px 0;
+}
+
+.school-register-content {
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.school-register-form {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  background: #ffffff;
+  color: #1b5e20;
+}
+
+.form-group input[readOnly] {
+  background: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff4444;
+  text-align: center;
+  margin: 0;
+}
+
+.school-register-form button {
+  background: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  color: #ffffff;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.school-register-form button:disabled {
+  background: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.school-register-form button:not(:disabled):hover {
+  background: #45a049;
+}
+
+.registered-schools {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.registered-schools h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.school-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.school-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.school-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.school-card.selected {
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid #4CAF50;
+}
+
+.school-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+}
+
+.school-card p {
+  margin: 5px 0;
+  font-size: 1em;
+}
+
+.student-details {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.student-details h3 {
+  margin: 0 0 15px;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.student-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.student-details li {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.student-details p {
+  margin: 5px 0;
+}
+
+.school-register-options {
+  display: flex;
+  justify-content: center;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.school-register-footer {
+  padding: 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .school-register-header h1 {
+    font-size: 2.5em;
+  }
+  .school-register-form {
+    padding: 20px;
+  }
+  .school-card {
+    width: 100%;
+    max-width: 300px;
+  }
+}
